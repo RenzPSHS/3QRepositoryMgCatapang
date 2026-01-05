@@ -7,6 +7,14 @@ function getShows() {
     rowString = "<tr><th>Key</th><th>Title</th><th>Casts</th><th>Year</th><th>Rating / Score</th></tr>";
     results.innerHTML = ""
     for (let key in showList) {
+      if (cat == "All") {
+        rowString += "<tr>";
+        rowString += "<td>" + key + "</td>";
+        rowString += "<td>" + showList[key].title + "</td>";
+        rowString += "<td>" + showList[key].cast + "</td>";
+        rowString += "<td>" + showList[key].year + "</td>";
+       rowString += "<td>" + showList[key].ratingScore() + "</td></tr>";
+        }
       if (showList[key].category == cat) {
         rowString += "<tr>";
         rowString += "<td>" + key + "</td>";
