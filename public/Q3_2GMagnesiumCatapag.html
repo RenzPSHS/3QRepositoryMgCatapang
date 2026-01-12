@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Q3 2nd Graded Exercise">
+    <meta name="keywords" content="HTML Forms">
+    <meta name="author" content="RenzPSHS">
+    <title>Sample Form</title>
+    <!-- updated external css link to show how to share it between repository -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="icon" href="../../assets/pshslogo.png" sizes="32x32" type="image/png">
+    <script src="script.js" defer></script>
+   <style>
+     body{
+        padding: 25px;
+        font-family: arial;
+        width: 80%;
+        margin-left: 10%;
+        }
+
+        .title {
+            color: #5C6AC4;
+        }
+
+        fieldset:nth-child(2) {
+             margin-top: 20px;
+        }
+
+        legend {
+            background: black;
+            color: yellow;
+            padding: 5px;
+        }
+        label {
+             margin: 5%;
+        }
+    </style>
+  </head>
+  <body>
+     <header>
+        <div>
+        </div>
+        <nav class="navbar">
+        </nav>
+    </header>
+    <section>
+      <h1 class="title">Sign-up Page</h1>
+      <form id="dForm" action="registered.html" method="get">
+        <fieldset>
+          <legend>Credentials</legend><br/>
+          <label> StudentID: 
+            <input type="number" name="sid" id="sid" required />
+          </label>
+          <label> Full Name: 
+            <input type="text" name="name" id="name" required />
+          <label> Birthday :
+            <input type="date" name="dob" id="dob" />
+          </label><br/><br/>
+          <label> Email Address:
+            <input type="email" name="useremail" id="useremail" required />
+          </label><br/><br/>
+          <label> Mobile Phone:
+            <input type="text" name="phone" id="phone" required />
+          </label>
+          <label for="Grade Level"> Grade Level:
+            <select id="grade" name="Grade level">
+              <option value="Grade 7">Grade7</option>
+              <option value="Grade 8">Grade8</option>
+              <option value="Grade 9">Grade9</option>
+              <option value="Grade 10">Grade10</option>
+              <option value="Grade 11">Grade11</option>
+              <option value="Grade 12">Grade12</option>
+          </select>
+          </label>
+
+          <label> Intern or External
+            <input type="radio" name="type" value="Intern" checked /> Intern
+            <input type="radio" name="type" value="External" /> External
+          </label>
+
+          <label for="Preferred Club"> Grade Level:
+            <select id="club" name="Club_Choice">
+              <option value="AstroSoc">Grade7</option>
+              <option value="Exposure">Grade8</option>
+              <option value="ATOM">Grade9</option>
+              <option value="Flux">Grade10</option>
+              <option value="Sagala">Grade11</option>
+          </select>
+          </label>
+
+          <label> Why do you want to join?:
+            <textarea name="reason" id="reason" rows="4" cols="30" 
+              placeholder="Type your reason here"></textarea>
+          </label>
+          
+          
+        </fieldset>  
+        <fieldset>
+          <legend>Action Buttons</legend>
+          <button type="submit"> Accept </button>
+          <input type="reset" value=" Clear " />
+        </fieldset> 
+      </form>
+    </section>
+    <script src="q3e3script.js"></script>
+  </body>
+</html>
