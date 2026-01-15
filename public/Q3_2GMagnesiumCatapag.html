@@ -1,108 +1,174 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Q3 2nd Graded Exercise">
-    <meta name="keywords" content="HTML Forms">
-    <meta name="author" content="RenzPSHS">
-    <title>Sample Form</title>
-    <!-- updated external css link to show how to share it between repository -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../styles.css" />
-    <link rel="icon" href="../../assets/pshslogo.png" sizes="32x32" type="image/png">
-    <script src="script.js" defer></script>
-   <style>
-     body{
-        padding: 25px;
-        font-family: arial;
-        width: 80%;
-        margin-left: 10%;
-        }
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Q3 2nd Graded Exercise">
+  <meta name="keywords" content="HTML Forms">
+  <meta name="author" content="RenzPSHS">
+  <title>Sample Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../styles.css" />
+  <link rel="icon" href="../../assets/pshslogo.png" sizes="32x32" type="image/png">
 
-        .title {
-            color: #5C6AC4;
-        }
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Club/Organization Application Form</title>
+  <style>
+    form {
+      width: 500px;
+      margin: auto;
+      padding: 20px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+    }
+    fieldset {
+      margin-bottom: 15px;
+      border: 1px solid #aaa;
+      padding: 10px;
+    }
+    legend {
+      font-weight: bold;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input, select, textarea {
+      width: 95%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #0066cc;
+      background-color: #e6f2ff;
+      outline: none;
+    }
+    .error {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-top: 5px;
+    }
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .buttons {
+      text-align: center;
+    }
+    .buttons input, .buttons button {
+      width: 100px;
+      margin: 5px;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      background-color: #0066cc;
+      color: white;
+      cursor: pointer;
+    }
+    .buttons input[type="reset"] {
+      background-color: #999;
+    }
+  </style>
+  <script>
+    function confirmSubmit() {
+      return confirm("Are you sure you want to submit your application?");
+    }
+    function confirmReset() {
+      return confirm("Are you sure you want to reset the form information?");
+    }
+    function validateOnBlur(element) {
+      if (element.value.trim() === "") {
+        element.classList.add("error");
+      } else {
+        element.classList.remove("error");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Sign-up Page</h1>
+  <form method="post" action="submit"
+        onsubmit="return confirmSubmit()" onreset="return confirmReset()">
 
-        fieldset:nth-child(2) {
-             margin-top: 20px;
-        }
+    <fieldset>
+      <legend>Student Information</legend>
+      <label>Student ID:
+        <input type="number" name="studentID" required onblur="validateOnBlur(this)">
+      </label>
+      <label>Full Name:
+        <input type="text" name="fullName" required onblur="validateOnBlur(this)">
+      </label>
+      <label>Birthday:
+        <input type="date" name="birthday" required onblur="validateOnBlur(this)">
+      </label>
+      <label>Email Address:
+        <input type="email" name="email" required onblur="validateOnBlur(this)">
+      </label>
+      <label>Mobile Phone:
+        <input type="text" name="mobile" required onblur="validateOnBlur(this)">
+      </label>
+      <label>Grade Level:
+        <select name="gradeLevel" required>
+          <option value="">--Select Grade--</option>
+          <option value="G7">Grade 7</option>
+          <option value="G8">Grade 8</option>
+          <option value="G9">Grade 9</option>
+          <option value="G10">Grade 10</option>
+          <option value="G11">Grade 11</option>
+          <option value="G12">Grade 12</option>
+        </select>
+      </label>
+    </fieldset>
 
-        legend {
-            background: black;
-            color: yellow;
-            padding: 5px;
-        }
-        label {
-             margin: 5%;
-        }
-    </style>
-  </head>
-  <body>
-     <header>
-        <div>
-        </div>
-        <nav class="navbar">
-        </nav>
-    </header>
-    <section>
-      <h1 class="title">Sign-up Page</h1>
-      <form id="dForm" action="registered.html" method="post">
-        <fieldset>
-          <legend>Credentials</legend><br/>
-          <label> StudentID: 
-            <input type="number" name="sid" id="sid" required />
-          </label>
-          <label> Full Name: 
-            <input type="text" name="name" id="name" required />
-          <label> Birthday :
-            <input type="date" name="dob" id="dob" />
-          </label><br/><br/>
-          <label> Email Address:
-            <input type="email" name="useremail" id="useremail" required />
-          </label><br/><br/>
-          <label> Mobile Phone:
-            <input type="text" name="phone" id="phone" required />
-          </label>
-          <label for="Grade Level"> Grade Level:
-            <select id="grade" name="Grade_level">
-              <option value="Grade 7">Grade7</option>
-              <option value="Grade 8">Grade8</option>
-              <option value="Grade 9">Grade9</option>
-              <option value="Grade 10">Grade10</option>
-              <option value="Grade 11">Grade11</option>
-              <option value="Grade 12">Grade12</option>
-          </select>
-          </label>
+    <fieldset>
+      <legend>Intern or Extern:</legend>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="status" value="INT" required> Intern
+        </label>
+        <label>
+          <input type="radio" name="status" value="EXT" required> Extern
+        </label>
+      </div>
+    </fieldset>
 
-          <label> Intern or External
-            <input type="radio" name="type" value="Intern" checked /> Intern
-            <input type="radio" name="type" value="External" /> External
-          </label>
+    <fieldset>
+      <legend>Club Preference:</legend>
+      <label>Preferred Organization/Club:
+        <select name="club" required>
+          <option value="ASTRO">AstroSoc</option>
+          <option value="EXP">Exposure</option>
+          <option value="ATOM">ATOM</option>
+          <option value="FLUX">Flux</option>
+          <option value="SAG">Sagala</option>
+          <option value="MUN">MUN</option>
+        </select>
+      </label>
+      <label>Why do you want to join?:
+        <textarea name="reason" rows="4" required onblur="validateOnBlur(this)"></textarea>
+      </label>
+    </fieldset>
 
-          <label for="Preferred Club"> Preferred Club:
-            <select id="club" name="Club_Choice">
-              <option value="AstroSoc">AstroSoc</option>
-              <option value="Exposure">Exposure</option>
-              <option value="ATOM">ATOM</option>
-              <option value="Flux">Flux</option>
-              <option value="Sagala">Sagala</option>
-          </select>
-          </label>
-
-          <label> Why do you want to join?:
-            <textarea name="reason" id="reason" rows="4" cols="30" 
-              placeholder="Type your reason here"></textarea>
-          </label>
-          
-          
-        </fieldset>  
-        <fieldset>
-          <legend>Action Buttons</legend>
-          <button type="submit"> Accept </button>
-          <input type="reset" value=" Clear " />
-        </fieldset> 
-      </form>
-    </section>
-  </body>
+    <fieldset>
+      <legend>Action Buttons:</legend>
+      <div class="buttons">
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+      </div>
+    </fieldset>
+  </form>
+</body>
 </html>
