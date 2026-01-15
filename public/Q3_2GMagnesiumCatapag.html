@@ -47,7 +47,7 @@
     </header>
     <section>
       <h1 class="title">Sign-up Page</h1>
-      <form id="dForm" action="registered.html" method="get">
+      <form id="dForm" action="registered.html" method="post">
         <fieldset>
           <legend>Credentials</legend><br/>
           <label> StudentID: 
@@ -65,7 +65,7 @@
             <input type="text" name="phone" id="phone" required />
           </label>
           <label for="Grade Level"> Grade Level:
-            <select id="grade" name="Grade level">
+            <select id="grade" name="Grade_level">
               <option value="Grade 7">Grade7</option>
               <option value="Grade 8">Grade8</option>
               <option value="Grade 9">Grade9</option>
@@ -80,13 +80,13 @@
             <input type="radio" name="type" value="External" /> External
           </label>
 
-          <label for="Preferred Club"> Grade Level:
+          <label for="Preferred Club"> Preferred Club:
             <select id="club" name="Club_Choice">
-              <option value="AstroSoc">Grade7</option>
-              <option value="Exposure">Grade8</option>
-              <option value="ATOM">Grade9</option>
-              <option value="Flux">Grade10</option>
-              <option value="Sagala">Grade11</option>
+              <option value="AstroSoc">AstroSoc</option>
+              <option value="Exposure">Exposure</option>
+              <option value="ATOM">ATOM</option>
+              <option value="Flux">Flux</option>
+              <option value="Sagala">Sagala</option>
           </select>
           </label>
 
@@ -104,6 +104,5 @@
         </fieldset> 
       </form>
     </section>
-    <script src="q3e3script.js"></script>
   </body>
 </html>
