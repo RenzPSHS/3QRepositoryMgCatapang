@@ -12,10 +12,6 @@
   <link rel="stylesheet" href="../../styles.css" />
   <link rel="icon" href="../../assets/pshslogo.png" sizes="32x32" type="image/png">
 
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
   <title>Club/Organization Application Form</title>
   <style>
     form {
@@ -96,12 +92,61 @@
         element.classList.remove("error");
       }
     }
+
+    // ⭐ ADDED (MINIMAL): localStorage logic
+    const KEY = "clubSignups";
+
+    function loadSignups() {
+      const data = localStorage.getItem(KEY);
+      if (data) {
+        return JSON.parse(data);
+      } else {
+        return [];
+      }
+    }
+
+    function saveSignups(arr) {
+      localStorage.setItem(KEY, JSON.stringify(arr));
+    }
+
+    window.onload = function () {
+      const form = document.querySelector("form");
+
+      form.addEventListener("submit", function (e) {
+        // ⭐ ADDED: prevent page reload
+        e.preventDefault();
+
+        if (!confirmSubmit()) return;
+
+        // ⭐ ADDED: collect form data (no restructuring)
+        const signup = {
+          studentID: form.studentID.value,
+          fullName: form.fullName.value,
+          birthday: form.birthday.value,
+          email: form.email.value,
+          mobile: form.mobile.value,
+          gradeLevel: form.gradeLevel.value,
+          status: form.status.value,
+          club: form.club.value,
+          reason: form.reason.value
+        };
+
+        const signups = loadSignups(); // grow existing data
+        signups.push(signup);
+        saveSignups(signups);
+
+        alert("Saved to localStorage!");
+        form.reset();
+      });
+    };
   </script>
 </head>
 <body>
   <h1>Sign-up Page</h1>
-  <form method="post" action="submit"
-        onsubmit="return confirmSubmit()" onreset="return confirmReset()">
+
+  <!-- ⭐ CHANGED ONLY: removed action attribute -->
+  <form method="post"
+        onreset="return confirmReset()">
 
     <fieldset>
       <legend>Student Information</legend>
@@ -167,6 +212,11 @@
       <div class="buttons">
         <input type="submit" value="Submit">
         <input type="reset" value="Reset">
+
+        <!-- ⭐ ADDED ONLY -->
+        <button type="button" onclick="window.location.href='viewSignUps.html'">
+          View Signups
+        </button>
       </div>
     </fieldset>
   </form>

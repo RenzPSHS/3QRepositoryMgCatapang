@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Sign-ups</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    #msg {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Club Sign-ups</h2>
+
+<label>Filter by Club:</label>
+<select id="clubSelect">
+  <option value="ALL">ALL</option>
+  <option value="ASTRO">AstroSoc</option>
+  <option value="EXP">Exposure</option>
+  <option value="ATOM">ATOM</option>
+  <option value="FLUX">Flux</option>
+  <option value="SAG">Sagala</option>
+  <option value="MUN">MUN</option>
+</select>
+
+<p id="total"></p>
+<p id="msg"></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Full Name</th>
+      <th>Grade</th>
+      <th>Status</th>
+      <th>Club</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<br>
+<a href="signup.html">Back to Sign-up Page</a>
+
+<script>
+  // same key used in signup page
+  const KEY = "clubSignups";
+
+  // load data from localStorage
+  function loadData() {
+    const data = localStorage.getItem(KEY);
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
+  }
+
+  // display signups in table
+  function showSignups(filterClub) {
+    const signups = loadData();
+    const body = document.getElementById("tableBody");
+    const total = document.getElementById("total");
+    const msg = document.getElementById("msg");
+
+    body.innerHTML = "";
+    msg.innerHTML = "";
+
+    // if no data saved
+    if (signups.length === 0) {
+      msg.innerHTML = "No sign-ups saved yet.";
+      total.innerHTML = "";
+      return;
+    }
+
+    let count = 0;
+
+    for (let i = 0; i < signups.length; i++) {
+      const s = signups[i];
+
+      // filter by club
+      if (filterClub !== "ALL" && s.club !== filterClub) {
+        continue;
+      }
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${s.studentID}</td>
+        <td>${s.fullName}</td>
+        <td>${s.gradeLevel}</td>
+        <td>${s.status}</td>
+        <td>${s.club}</td>
+        <td>${s.email}</td>
+      `;
+      body.appendChild(row);
+      count++;
+    }
+
+    // if no results after filtering
+    if (count === 0) {
+      msg.innerHTML = "No sign-ups for this club.";
+    }
+
+    total.innerHTML = "Total Sign-ups: " + count;
+  }
+
+  // initial display (ALL)
+  showSignups("ALL");
+
+  // change filter
+  document.getElementById("clubSelect").addEventListener("change", function () {
+    showSignups(this.value);
+  });
+</script>
+
+</body>
+</html>
