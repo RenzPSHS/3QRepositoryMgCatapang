@@ -93,7 +93,6 @@
       }
     }
 
-    // ⭐ ADDED (MINIMAL): localStorage logic
     const KEY = "clubSignups";
 
     function loadSignups() {
@@ -113,12 +112,10 @@
       const form = document.querySelector("form");
 
       form.addEventListener("submit", function (e) {
-        // ⭐ ADDED: prevent page reload
         e.preventDefault();
 
         if (!confirmSubmit()) return;
 
-        // ⭐ ADDED: collect form data (no restructuring)
         const signup = {
           studentID: form.studentID.value,
           fullName: form.fullName.value,
@@ -144,7 +141,6 @@
 <body>
   <h1>Sign-up Page</h1>
 
-  <!-- ⭐ CHANGED ONLY: removed action attribute -->
   <form method="post"
         onreset="return confirmReset()">
 
@@ -213,7 +209,6 @@
         <input type="submit" value="Submit">
         <input type="reset" value="Reset">
 
-        <!-- ⭐ ADDED ONLY -->
         <button type="button" onclick="window.location.href='viewSignUps.html'">
           View Signups
         </button>

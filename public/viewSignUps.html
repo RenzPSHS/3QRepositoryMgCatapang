@@ -64,10 +64,8 @@
 <a href="signup.html">Back to Sign-up Page</a>
 
 <script>
-  // same key used in signup page
   const KEY = "clubSignups";
 
-  // load data from localStorage
   function loadData() {
     const data = localStorage.getItem(KEY);
     if (data) {
@@ -77,7 +75,6 @@
     }
   }
 
-  // display signups in table
   function showSignups(filterClub) {
     const signups = loadData();
     const body = document.getElementById("tableBody");
@@ -87,7 +84,6 @@
     body.innerHTML = "";
     msg.innerHTML = "";
 
-    // if no data saved
     if (signups.length === 0) {
       msg.innerHTML = "No sign-ups saved yet.";
       total.innerHTML = "";
@@ -99,7 +95,6 @@
     for (let i = 0; i < signups.length; i++) {
       const s = signups[i];
 
-      // filter by club
       if (filterClub !== "ALL" && s.club !== filterClub) {
         continue;
       }
@@ -117,7 +112,6 @@
       count++;
     }
 
-    // if no results after filtering
     if (count === 0) {
       msg.innerHTML = "No sign-ups for this club.";
     }
@@ -125,10 +119,8 @@
     total.innerHTML = "Total Sign-ups: " + count;
   }
 
-  // initial display (ALL)
   showSignups("ALL");
 
-  // change filter
   document.getElementById("clubSelect").addEventListener("change", function () {
     showSignups(this.value);
   });
